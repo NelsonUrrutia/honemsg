@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "honemsg"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["textual", "textual-dev", "textual[syntax]"]
+authors = [{ name = "Nelson Urrutia", email = "nelurrutia15@gmail.com" }]
+
+
+[project.urls]
+Repository = "https://github.com/NelsonUrrutia/honemsg"
+
+
+[project.scripts]
+honemsg = "honemsg.main:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["honemsg"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/honemsg", "/LICENSE", "/README.md", "/pyproject.toml"]
+
+[tool.basedpyright]
+typeCheckingMode = "basic"
