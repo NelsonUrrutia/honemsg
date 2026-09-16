@@ -1,6 +1,7 @@
 
+from textual import on, work
 from textual.app import App, ComposeResult
-from textual.containers import  Horizontal, Vertical, VerticalScroll
+from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.widgets import (
     Button,
     Header,
@@ -10,6 +11,8 @@ from textual.widgets import (
     Rule,
     TextArea,
 )
+
+from honemsg.controllers.ollama_chat import send_message_to_ollama
 
 EXAMPLE_MARKDOWN = """\
 Okay, here are a few options for improving that message, keeping in mind the context of needing
@@ -83,7 +86,7 @@ class HonemsgApp(App):
             width: 100% !important;
         }
 
-        #improve_progress{
+        #suggestion_progress_bar{
             display: none;
         }
 
@@ -119,26 +122,52 @@ class HonemsgApp(App):
 
     def compose(self) -> ComposeResult:
         yield Header(icon="🧠")
+
         with Horizontal(classes="section"):
+
             with Vertical(classes="column"):
                 yield Label("MESSAGE", classes="section_title")
                 yield TextArea(language="markdown", id="main_message")
-                yield Button("IMPROVE →", variant="primary", flat=True, classes="cta", id="btn_improve")
+                yield Button("IMPROVE →", variant="primary", flat=True, classes="cta", id="main_message_btn")
 
             yield Rule.vertical()
 
             with Vertical(classes="column"):
                 yield Label("SUGESTIONS", classes="section_title")
-                yield ProgressBar(show_bar=True, clock=None, show_eta=False, show_percentage=False, id="improve_progress")
+                yield ProgressBar(show_bar=True, clock=None, show_eta=False, show_percentage=False, id="suggestion_progress_bar")
+
                 with VerticalScroll(id="suggestions_scroll"):
-                    yield Markdown(EXAMPLE_MARKDOWN, id="suggestions")
+                    yield Markdown( id="suggestions_container")
+
                 yield Rule.horizontal(id="chat_rule")
+
                 yield Label("Chat about it", classes="section_title", id="chat_label")
                 yield TextArea(id="chat_message_textarea")
                 yield Button("SEND →", flat= True, variant="primary", classes="cta", id="btn_send_chat_message")
 
     def on_mount(self) -> None:
-            self.title = "HONEMSG"
+        self.title = "HONEMSG"
+        self.main_message = self.query_one("#main_message", TextArea)
+        self.main_message_btn = self.query_one("#main_message_btn", Button)
+        self.suggestion_progress_bar = self.query_one("#suggestion_progress_bar", ProgressBar)
+        self.suggestions_container = self.query_one("#suggestions_container", Markdown)
+        self.chat_message = self.query_one("#chat_message_textarea", TextArea)
+        self.chat_message_btn = self.query_one("#btn_send_chat_message", Button)
+
+    @on(Button.Pressed, "#main_message_btn")
+    def on_improve_message(self) -> None:
+        if self.main_message.text:
+            self.render_ollama_response()
+
+    @work(thread=True)
+    def render_ollama_response(self):
+        self.app.call_from_thread(self.toggle_progress_bar, True)
+        message =  send_message_to_ollama(self.main_message.text)
+        self.app.call_from_thread(self.suggestions_container.append, f"{message}")
+        self.app.call_from_thread(self.toggle_progress_bar, False)
+
+    def toggle_progress_bar(self, flag):
+        self.suggestion_progress_bar.display = "block" if flag else "none"
 
 def run() -> None:
     HonemsgApp().run()

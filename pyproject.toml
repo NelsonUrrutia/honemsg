@@ -10,7 +10,7 @@ description = ""
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
-dependencies = ["textual", "textual-dev", "textual[syntax]"]
+dependencies = ["textual", "textual-dev", "textual[syntax]", "ollama"]
 authors = [{ name = "Nelson Urrutia", email = "nelurrutia15@gmail.com" }]
 
 
