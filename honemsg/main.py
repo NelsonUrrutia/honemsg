@@ -45,9 +45,7 @@ class HonemsgApp(App):
             width: 100% !important;
         }
 
-        #suggestions_progress_bar{
-            display: none;
-        }
+
 
         .section{
             padding: 1 1;
@@ -67,24 +65,26 @@ class HonemsgApp(App):
             margin-left: 1;
         }
 
+        #message_editor_column_content{
+            border: hkey $primary;
+        }
+
+        #action_buttons_container{
+            height: auto;
+        }
+
         #message_editor_type_actions{
             height: 10
         }
 
+        #suggestions_progress_bar{
+            display: none;
+            padding-right: 1;
+        }
+
         #suggestions_scroll{
             height: 1fr;
-        }
-
-        #chat_input{
-            height: 5;
-        }
-
-        #chat_divider{
-            margin: 1 0 0 0;
-        }
-
-        #chat_title{
-            padding: 1 1;
+            border: hkey $primary;
         }
 
         #message_actions{
@@ -97,20 +97,26 @@ class HonemsgApp(App):
 
         with Horizontal(classes="section"):
 
-            with Vertical(classes="column"):
+            with Vertical(classes="column" ):
                 yield Label("MESSAGE EDITOR", classes="section_title")
-                with Horizontal(id="message_editor_type_actions"):
-                    with Vertical():
-                        yield Label("Message type", classes="field_label")
-                        yield Select(MESSAGE_TYPES, id="message_type", prompt="Select message type", value="slack_message")
-                    with Vertical():
-                        yield Label("Actions", classes="field_label")
-                        yield SelectionList(*MESSAGE_ACTIONS, id="message_actions")
-                yield Label("Text", classes="field_label")
-                yield TextArea(language="markdown", id="message_input")
-                yield Button("APPLY →", variant="primary", flat=True, classes="button", id="message_improve_button")
 
-            yield Rule.vertical()
+                with Vertical(id="message_editor_column_content"):
+                    with Horizontal(id="message_editor_type_actions"):
+                        with Vertical():
+                            yield Label("Message type", classes="field_label")
+                            yield Select(MESSAGE_TYPES, id="message_type", prompt="Select message type", value="slack_message")
+                        with Vertical():
+                            yield Label("Actions", classes="field_label")
+                            yield SelectionList(*MESSAGE_ACTIONS, id="message_actions")
+
+                    yield Label("Text", classes="field_label")
+                    yield TextArea(language="markdown", id="message_input")
+
+                with Horizontal(id="action_buttons_container"):
+                    yield Button("APPLY →", variant="primary", flat=True, classes="button", id="message_improve_button")
+                    yield Button("CLEAR FORM", variant="primary", flat=True, classes="button", id="clear_form_btn")
+
+            yield Rule.vertical(line_style="heavy")
 
             with Vertical(classes="column"):
                 yield Label("SUGESTIONS", classes="section_title")
@@ -118,12 +124,8 @@ class HonemsgApp(App):
 
                 with VerticalScroll(id="suggestions_scroll"):
                     yield Markdown( id="suggestions_output")
+                yield Button("CLEAR CHAT CONTEXT", variant="primary",classes="button", id="clear_chat_context_btn", flat=True)
 
-                yield Rule.horizontal(id="chat_divider")
-
-                yield Label("Chat about it", classes="section_title", id="chat_title")
-                yield TextArea(id="chat_input")
-                yield Button("SEND →", flat= True, variant="primary", classes="button", id="chat_send_button")
 
     def on_mount(self) -> None:
         self.title = "HONEMSG"
@@ -133,8 +135,6 @@ class HonemsgApp(App):
         self.message_improve_button = self.query_one("#message_improve_button", Button)
         self.suggestions_progress_bar = self.query_one("#suggestions_progress_bar", ProgressBar)
         self.suggestions_output = self.query_one("#suggestions_output", Markdown)
-        self.chat_input = self.query_one("#chat_input", TextArea)
-        self.chat_send_button = self.query_one("#chat_send_button", Button)
 
     @on(Button.Pressed, "#message_improve_button")
     def on_improve_message(self) -> None:
@@ -143,7 +143,19 @@ class HonemsgApp(App):
             return
 
         if self.message_input.text:
+            self.suggestions_output.update(markdown="")
             self.generate_suggestions()
+
+    @on(Button.Pressed, "#clear_form_btn")
+    def on_clear_form(self) -> None:
+        self.message_type.value = "slack_message"
+        self.message_actions.deselect_all()
+        self.message_input.clear()
+
+    @on(Button.Pressed, "#clear_chat_context_btn")
+    def on_clear_chat_context(self) -> None:
+        self.suggestions_output.update(markdown="")
+        self.notify("Chat context cleared.", severity="information")
 
     @work(thread=True)
     def generate_suggestions(self):
