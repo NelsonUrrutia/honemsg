@@ -18,6 +18,8 @@ from honemsg.controllers.ollama_chat import send_message_to_ollama
 
 MESSAGE_TYPES = [
     ("Slack message", "slack_message"),
+    ("Commit message", "commit message"),
+    ("Documentation", "documentation"),
     ("Email", "email"),
     ("Investigation", "investigation"),
     ("Pull request description", "pull_request_description"),
