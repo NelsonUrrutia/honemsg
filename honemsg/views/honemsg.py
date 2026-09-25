@@ -71,7 +71,7 @@ class HonemsgView(Static):
             yield Rule.vertical(line_style="heavy")
 
             with Vertical(classes="column"):
-                yield Label("SUGESTIONS", classes="section_title")
+                yield Label("SUGGESTIONS", classes="section_title")
                 yield ProgressBar(show_bar=True, clock=None, show_eta=False, show_percentage=False, id="suggestions_progress_bar")
 
                 with VerticalScroll(id="suggestions_scroll"):

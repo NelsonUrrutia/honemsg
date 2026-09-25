@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "honemsg"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hone your message before you send it: a terminal UI that improves, shortens, summarizes and translates your messages with a local AI model via Ollama."
 readme = "README.md"
 license = { file = "LICENSE" }
