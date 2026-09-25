@@ -22,7 +22,7 @@ errores gramaticales, elimine redundancias y haga más claro lo que quiero trans
 
 Inicialmente, utilizaba ChatGPT para esta tarea, pero vi una oportunidad para crear una herramienta propia. Decidí utilizar Ollama y sus modelos locales, lo que me permite mejorar los mensajes sin incurrir en costes. 
 
-Y la clave fue identificar mi necesidad: "necesito un asistente que me ayude a mejorar el mensaje que quiero enviar, no me hace falta que tenga todo el contexto; eso ya lo tengo en mi mente". Y así fue como surgió la idea de **Honemsg**.
+Y la clave fue identificar mi necesidad: "necesito un asistente que me ayude a mejorar el mensaje que quiero enviar, no me hace falta que tenga todo el contexto; eso ya lo tengo en mi mente". Y así fue como surgió la idea de **Honemsg**; en inglés *hone* significa afilar.
 
 ## Stack
 
@@ -80,19 +80,6 @@ Se abrirá la TUI desde la que puedes empezar a mejorar tus mensajes.
 ```bash
 pipx upgrade honemsg     # actualizar a la última versión
 pipx uninstall honemsg   # desinstalar
-```
-
-### Instalación para desarrollo
-
-Si quieres modificar el código, clona el repositorio e instálalo en modo editable:
-
-```bash
-git clone https://github.com/NelsonUrrutia/honemsg.git
-cd honemsg
-python -m venv .venv
-source .venv/bin/activate   # En Windows: .venv\Scripts\activate
-pip install -e .
-honemsg
 ```
 
 ## Honemsg en acción
