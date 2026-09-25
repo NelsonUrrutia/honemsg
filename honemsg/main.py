@@ -1,6 +1,8 @@
 from textual.app import App, ComposeResult
+from textual.theme import Theme
 from textual.widgets import Header
 
+from honemsg.settings import Settings
 from honemsg.views.honemsg import HonemsgView
 from honemsg.views.welcome import WelcomeScreen
 
@@ -66,13 +68,27 @@ class HonemsgApp(App):
         }
     """
 
+    def __init__(self) -> None:
+        super().__init__()
+        self.settings = Settings()
+
     def compose(self) -> ComposeResult:
         yield Header(icon="📝")
         yield HonemsgView()
 
     def on_mount(self) -> None:
         self.title = "HONEMSG"
+        self.restore_theme()
+        self.theme_changed_signal.subscribe(self, self.save_theme)
         self.push_screen(WelcomeScreen())
+
+    def restore_theme(self) -> None:
+        saved_theme = self.settings.get("theme")
+        if saved_theme in self.available_themes:
+            self.theme = saved_theme
+
+    def save_theme(self, theme: Theme) -> None:
+        self.settings.set("theme", theme.name)
 
 def run() -> None:
     HonemsgApp().run()

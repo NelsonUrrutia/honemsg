@@ -10,7 +10,7 @@ description = "Hone your message before you send it: a terminal UI that improves
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
-dependencies = ["textual", "textual-dev", "textual[syntax]", "ollama"]
+dependencies = ["textual", "textual-dev", "textual[syntax]", "ollama", "platformdirs"]
 authors = [{ name = "Nelson Urrutia", email = "nelurrutia15@gmail.com" }]
 
 
