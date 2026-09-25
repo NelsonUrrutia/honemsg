@@ -86,30 +86,30 @@ pipx uninstall honemsg   # desinstalar
 
 ### Mensaje de Slack en inglés
 
-<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-one.mp4" controls muted width="100%"></video></p>
+<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-one.mp4?raw=true" controls muted width="100%"></video></p>
 
 [Ver vídeo](assets/test-one.mp4)
 
 ### Mensaje de Slack en español
 
-<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-two.mp4" controls muted width="100%"></video></p>
+<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-two.mp4?raw=true" controls muted width="100%"></video></p>
 
 [Ver vídeo](assets/test-two.mp4)
 
 ### Documentación
 
-<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-three.mp4" controls muted width="100%"></video></p>
+<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-three.mp4?raw=true" controls muted width="100%"></video></p>
 
 [Ver vídeo](assets/test-three.mp4)
 
 ### Email
 
-<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-four.mp4" controls muted width="100%"></video></p>
+<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-four.mp4?raw=true" controls muted width="100%"></video></p>
 
 [Ver vídeo](assets/test-four.mp4)
 
 ### Investigación
 
-<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-five.mp4" controls muted width="100%"></video></p>
+<p><video src="https://github.com/NelsonUrrutia/honemsg/blob/main/assets/test-five.mp4?raw=true" controls muted width="100%"></video></p>
 
 [Ver vídeo](assets/test-five.mp4)
