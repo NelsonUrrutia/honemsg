@@ -1,6 +1,6 @@
 ![Honemsg](assets/honemsg-logo.svg)
 
-![Honemsg en uso: pantalla de inicio, traducción de un PR y resumen de una investigación](assets/honemsg-cover.png)
+![Honemsg en uso: pantalla de inicio, traducción de un PR y mejora de documentación técnica](assets/honemsg-cover.png)
 
 ---
 
