@@ -48,10 +48,10 @@ Y la clave fue identificar mi necesidad: "necesito un asistente que me ayude a m
 
 ### 2. Instala Honemsg
 
-Instálalo con `pipx` directamente desde el repositorio:
+Instálalo con `pipx` desde [PyPI](https://pypi.org/project/honemsg/):
 
 ```bash
-pipx install git+https://github.com/NelsonUrrutia/honemsg.git
+pipx install honemsg
 ```
 
 > `pipx` crea un entorno virtual propio para la aplicación y deja el comando `honemsg` disponible en tu terminal, sin interferir con otros paquetes de Python.
