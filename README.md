@@ -1,6 +1,6 @@
 ![Honemsg](assets/honemsg-logo.svg)
 
-![Pantalla de inicio de Honemsg](assets/honemsg-cover.png)
+![Honemsg en uso: pantalla de inicio, traducción de un PR y resumen de una investigación](assets/honemsg-cover.png)
 
 ---
 
@@ -66,6 +66,8 @@ honemsg
 
 Se abrirá la TUI desde la que puedes empezar a mejorar tus mensajes.
 
+Para salir de la aplicación, pulsa <kbd>Ctrl</kbd> + <kbd>Q</kbd>.
+
 ### Actualizar y desinstalar
 
 ```bash
@@ -83,14 +85,14 @@ pipx uninstall honemsg   # desinstalar
 
 ![Honemsg mejorando un mensaje de Slack en español](assets/test-two.gif)
 
-### Documentación
+### Documentación: guía técnica
 
-![Honemsg mejorando documentación](assets/test-three.gif)
+![Honemsg mejorando documentación técnica en Markdown](assets/doc-improvement.gif)
+
+### Documentación: informe de investigación
+
+![Honemsg mejorando un informe de investigación en Markdown](assets/test-doc-improve.gif)
 
 ### Email
 
 ![Honemsg mejorando un email](assets/test-four.gif)
-
-### Investigación
-
-![Honemsg mejorando una investigación](assets/test-five.gif)
