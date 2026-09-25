@@ -53,14 +53,14 @@ class OllamaChat:
         target_language_name = self.set_language_name(self.set_target_language(language))
         profession_role = self.set_role(actions, language_name, target_language_name)
         specialized_role = self.set_specialized_role(message_type)
-        gole_role = self.set_gole_role(actions, language_name, target_language_name)
+        goal_role = self.set_goal_role(actions, language_name, target_language_name)
         task = self.set_task(actions, language_name, target_language_name)
         instructions = self.set_instructions(actions)
 
         return (
             f"{profession_role}\n"
             f"{specialized_role}\n"
-            f"{gole_role}\n"
+            f"{goal_role}\n"
             f"{self.default_rules}\n"
             f"{task}\n"
             f"{instructions}\n\n"
@@ -79,9 +79,9 @@ class OllamaChat:
         return f"You are a professional {language_name} editor."
 
     def set_specialized_role(self, message_type):
-        return f"You are specialized in {self.message_type_descriptions.get(message_type)} writng"
+        return f"You are specialized in {self.message_type_descriptions.get(message_type)} writing"
 
-    def set_gole_role(self, actions, language_name, target_language_name):
+    def set_goal_role(self, actions, language_name, target_language_name):
         if "translate" in actions:
             return f"""
                 Your goal is to accurately convey the meaning and nuances of the original {language_name} text
