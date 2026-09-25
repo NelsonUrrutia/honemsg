@@ -1,7 +1,5 @@
 ![Honemsg](assets/honemsg-logo.svg)
 
-# Honemsg
-
 ![Pantalla de inicio de Honemsg](assets/honemsg-cover.png)
 
 ---
