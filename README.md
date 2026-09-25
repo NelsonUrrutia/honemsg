@@ -60,7 +60,7 @@ Y la clave fue identificar mi necesidad: "necesito un asistente que me ayude a m
 Instálalo con `pipx` directamente desde el repositorio:
 
 ```bash
-pipx pipx install
+pipx install git+https://github.com/NelsonUrrutia/honemsg.git
 ```
 
 > `pipx` crea un entorno virtual propio para la aplicación y deja el comando `honemsg` disponible en tu terminal, sin interferir con otros paquetes de Python.
@@ -83,3 +83,33 @@ pipx uninstall honemsg   # desinstalar
 ```
 
 ## Honemsg en acción
+
+### Mensaje de Slack en inglés
+
+<video src="https://github.com/NelsonUrrutia/honemsg/raw/main/assets/test-one.mp4" controls muted width="100%"></video>
+
+[Ver vídeo](assets/test-one.mp4)
+
+### Mensaje de Slack en español
+
+<video src="https://github.com/NelsonUrrutia/honemsg/raw/main/assets/test-two.mp4" controls muted width="100%"></video>
+
+[Ver vídeo](assets/test-two.mp4)
+
+### Documentación
+
+<video src="https://github.com/NelsonUrrutia/honemsg/raw/main/assets/test-three.mp4" controls muted width="100%"></video>
+
+[Ver vídeo](assets/test-three.mp4)
+
+### Email
+
+<video src="https://github.com/NelsonUrrutia/honemsg/raw/main/assets/test-four.mp4" controls muted width="100%"></video>
+
+[Ver vídeo](assets/test-four.mp4)
+
+### Investigación
+
+<video src="https://github.com/NelsonUrrutia/honemsg/raw/main/assets/test-five.mp4" controls muted width="100%"></video>
+
+[Ver vídeo](assets/test-five.mp4)
