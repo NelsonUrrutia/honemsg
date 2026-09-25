@@ -1,6 +1,6 @@
-![Honemsg](assets/honemsg-logo.svg)
+![Honemsg](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/honemsg-logo.svg)
 
-![Honemsg en uso: pantalla de inicio, traducción de un PR y mejora de documentación técnica](assets/honemsg-cover.png)
+![Honemsg en uso: pantalla de inicio, traducción de un PR y mejora de documentación técnica](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/honemsg-cover.png)
 
 ---
 
@@ -79,20 +79,20 @@ pipx uninstall honemsg   # desinstalar
 
 ### Mensaje de Slack en inglés
 
-![Honemsg mejorando un mensaje de Slack en inglés](assets/test-one.gif)
+![Honemsg mejorando un mensaje de Slack en inglés](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/test-one.gif)
 
 ### Mensaje de Slack en español
 
-![Honemsg mejorando un mensaje de Slack en español](assets/test-two.gif)
+![Honemsg mejorando un mensaje de Slack en español](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/test-two.gif)
 
 ### Documentación: guía técnica
 
-![Honemsg mejorando documentación técnica en Markdown](assets/doc-improvement.gif)
+![Honemsg mejorando documentación técnica en Markdown](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/doc-improvement.gif)
 
 ### Documentación: informe de investigación
 
-![Honemsg mejorando un informe de investigación en Markdown](assets/test-doc-improve.gif)
+![Honemsg mejorando un informe de investigación en Markdown](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/test-doc-improve.gif)
 
 ### Email
 
-![Honemsg mejorando un email](assets/test-four.gif)
+![Honemsg mejorando un email](https://raw.githubusercontent.com/NelsonUrrutia/honemsg/main/assets/test-four.gif)
