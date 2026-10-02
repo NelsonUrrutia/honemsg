@@ -64,10 +64,22 @@ class HonemsgApp(App):
 
         #message_actions{
             height: 1fr;
+            margin-left: 2;
         }
 
         Select > SelectCurrent, #message_actions, #message_input{
+            border: round $primary;
             border-title-style: bold;
+            border-title-color: $primary;
+            padding-top: 1;
+        }
+
+        Select:focus > SelectCurrent, #message_actions:focus, #message_input:focus{
+            border: round $primary-lighten-2;
+        }
+
+        #message_language{
+            margin-top: 1;
         }
 
         #message_input{
