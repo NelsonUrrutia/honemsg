@@ -32,11 +32,6 @@ class HonemsgApp(App):
             text-style: bold
         }
 
-        .field_label{
-            margin: 1 0;
-            text-style: bold;
-        }
-
         .button{
             margin-left: 1;
         }
@@ -63,8 +58,20 @@ class HonemsgApp(App):
             border: hkey $primary;
         }
 
+        #message_editor_type_actions{
+            margin-top: 1;
+        }
+
         #message_actions{
             height: 1fr;
+        }
+
+        Select > SelectCurrent, #message_actions, #message_input{
+            border-title-style: bold;
+        }
+
+        #message_input{
+            margin-top: 1;
         }
     """
 

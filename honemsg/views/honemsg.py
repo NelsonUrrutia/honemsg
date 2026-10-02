@@ -1,6 +1,7 @@
 from textual import on, work
 from textual.app import ComposeResult
 from textual.containers import Horizontal, Vertical, VerticalScroll
+from textual.widgets._select import SelectCurrent
 from textual.widgets import (
     Button,
     Label,
@@ -51,17 +52,10 @@ class HonemsgView(Static):
                 with Vertical(id="message_editor_column_content"):
                     with Horizontal(id="message_editor_type_actions"):
                         with Vertical():
-                            with Vertical():
-                                yield Label("Message type", classes="field_label")
-                                yield Select(MESSAGE_TYPES, id="message_type", prompt="Select message type", value="slack_message")
-                            with Vertical():
-                                yield Label("Language", classes="field_label")
-                                yield Select(MESSAGE_LANGUAGES, id="message_language", prompt="Select language", value="en")
-                        with Vertical():
-                            yield Label("Actions", classes="field_label")
-                            yield SelectionList(*MESSAGE_ACTIONS, id="message_actions")
+                            yield Select(MESSAGE_TYPES, id="message_type", prompt="Select message type", value="slack_message")
+                            yield Select(MESSAGE_LANGUAGES, id="message_language", prompt="Select language", value="en")
+                        yield SelectionList(*MESSAGE_ACTIONS, id="message_actions")
 
-                    yield Label("Text", classes="field_label")
                     yield TextArea(language="markdown", id="message_input")
 
                 with Horizontal(id="action_buttons_container"):
@@ -87,6 +81,12 @@ class HonemsgView(Static):
         self.message_improve_button = self.query_one("#message_improve_button", Button)
         self.suggestions_progress_bar = self.query_one("#suggestions_progress_bar", ProgressBar)
         self.suggestions_output = self.query_one("#suggestions_output", Markdown)
+
+        # Select draws its border on its inner SelectCurrent, so the title goes there
+        self.message_type.query_one(SelectCurrent).border_title = "Message type"
+        self.message_language.query_one(SelectCurrent).border_title = "Language"
+        self.message_actions.border_title = "Actions"
+        self.message_input.border_title = "Text"
 
         self.ollamaChat = OllamaChat()
 
