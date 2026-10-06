@@ -40,7 +40,7 @@ class HonemsgApp(App):
             border: hkey $primary;
         }
 
-        #action_buttons_container{
+        #action_buttons_container, .suggestions_buttons_container{
             height: auto;
         }
 

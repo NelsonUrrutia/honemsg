@@ -1,3 +1,7 @@
+import shutil
+import subprocess
+import sys
+
 from textual import on, work
 from textual.app import ComposeResult
 from textual.containers import Horizontal, Vertical, VerticalScroll
@@ -41,6 +45,24 @@ MESSAGE_ACTIONS = [
 ]
 
 
+def copy_to_system_clipboard(text: str) -> bool:
+    if sys.platform == "darwin":
+        commands = [["pbcopy"]]
+    elif sys.platform == "win32":
+        commands = [["clip"]]
+    else:
+        commands = [["wl-copy"], ["xclip", "-selection", "clipboard"], ["xsel", "--clipboard", "--input"]]
+
+    for command in commands:
+        if shutil.which(command[0]):
+            try:
+                subprocess.run(command, input=text.encode("utf-8"), check=True)
+                return True
+            except (OSError, subprocess.CalledProcessError):
+                continue
+    return False
+
+
 class HonemsgView(Static):
 
     def compose(self) -> ComposeResult:
@@ -70,7 +92,9 @@ class HonemsgView(Static):
 
                 with VerticalScroll(id="suggestions_scroll"):
                     yield Markdown( id="suggestions_output")
-                yield Button("CLEAR CHAT CONTEXT", variant="primary",classes="button", id="clear_chat_context_btn", flat=True)
+                with Horizontal(classes="suggestions_buttons_container"):
+                    yield Button("COPY", variant="primary", flat=True, classes="button", id="copy_suggestion_btn")
+                    yield Button("CLEAR CHAT CONTEXT", variant="primary",classes="button", id="clear_chat_context_btn", flat=True)
 
 
     def on_mount(self) -> None:
@@ -88,6 +112,7 @@ class HonemsgView(Static):
         self.message_actions.border_title = "Actions"
         self.message_input.border_title = "Text"
 
+        self.suggestion_text = ""
         self.ollamaChat = OllamaChat()
 
     @on(Button.Pressed, "#message_improve_button")
@@ -106,6 +131,7 @@ class HonemsgView(Static):
 
         if self.message_input.text:
             self.suggestions_output.update(markdown="")
+            self.suggestion_text = ""
             self.generate_suggestions()
 
     @on(Button.Pressed, "#clear_form_btn")
@@ -118,12 +144,25 @@ class HonemsgView(Static):
     @on(Button.Pressed, "#clear_chat_context_btn")
     def on_clear_chat_context(self) -> None:
         self.suggestions_output.update(markdown="")
+        self.suggestion_text = ""
         self.notify("Chat context cleared.", severity="information")
+
+    @on(Button.Pressed, "#copy_suggestion_btn")
+    def on_copy_suggestion(self) -> None:
+        if not self.suggestion_text:
+            self.notify("There is no suggestion to copy yet.", severity="warning")
+            return
+
+        # OSC 52 only works in terminals that support it, so also try the native clipboard tool
+        self.app.copy_to_clipboard(self.suggestion_text)
+        copy_to_system_clipboard(self.suggestion_text)
+        self.notify("Suggestion copied to clipboard.", severity="information")
 
     @work(thread=True)
     def generate_suggestions(self):
         self.app.call_from_thread(self.toggle_progress_bar, True)
         message = self.ollamaChat.send_message_to_ollama(self.message_type.value, self.message_language.value, self.message_actions.selected, self.message_input.text)
+        self.suggestion_text = message
         self.app.call_from_thread(self.suggestions_output.append, f"{message}")
         self.app.call_from_thread(self.toggle_progress_bar, False)
 
